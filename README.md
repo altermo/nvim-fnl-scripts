@@ -7,11 +7,32 @@ Some of my fennel based scripts for neovim.
 ## auto-save.fnl
 Auto-saves after every `InsertLeave` and `TextChanged`
 ## builder.fnl
-Selects the builder for a file-type.
+A singe key to run/build a file.
+| key | action                         |
+|-----|--------------------------------|
+| F5  | runs the file using `AsyncRun` |
+| F6  | sources the file inside neovim |
+| F7  | runs the file in a new vsplit  |
+| F8  | quickly add a builder          |
 ## dff.fnl
-Quickly get to the important file.
+Uses a complex algorithm to create key combinations for files.
+```
+/lib   > l
+/utils > u
+main.c > mc
+main.h > mh
+```
 ## fcreate.fnl
-Quickly add snippets of code.
+Quickly add skeletons of code.
+```python
+def foo():
+    print("Hello world!"|)
+#>>> call add function skeleton
+def foo():
+    print("Hello world!"|)
+
+def |():
+```
 ## labull.fnl
 Add beginning of symbol in list when newline.
 ```
@@ -30,5 +51,27 @@ One day I will start writing this script, one day.
 A simple tabline implementation.
 ## textobj.fnl
 Get an text-object of the same character vertically or horizontally.
+| key | action                            |
+|-----|-----------------------------------|
+| im  | get same character/word in column |
+| ik  | get same character inside line    |
+```
+abc
+|123|
+123
+123
+abc
+>>im
+abc
+|123|
+|123|
+|123|
+abc
+```
+```
+ccaa|a|aaabb
+>> ik
+cc|aaaaaa|bb
+```
 ## unimpaired.fnl
 A rewrite for some of the functionality in unimpaired.vim
