@@ -6,6 +6,15 @@ Some of my fennel based scripts for neovim.
 # The scripts
 ## auto-save.fnl
 Auto-saves after every `InsertLeave` and `TextChanged`
+## bookend.fnl
+Temporary bookmarks
+Keymap after running `M.goto_file`
+| key      | action                                                |
+|----------|-------------------------------------------------------|
+| \<space> | sets current file bookmark to next pressed character  |
+| \<tab>   | prints the saved bookmarks                            |
+| \<bs>    | removes the next pressed character from the bookmarks |
+| other    | goto that bookmark                                    |
 ## builder.fnl
 A singe key to run/build a file.
 | key | action                         |
