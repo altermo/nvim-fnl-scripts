@@ -1,5 +1,7 @@
 local vf = vim.fn
-local nno = (require("utils.keymap")).nno
+local function nno(lhs, rhs, opt)
+  return vim.keymap.set("n", lhs, rhs, (opt or {silent = true, noremap = true}))
+end
 local function toggle(opt, on, off)
   if off then
     vim.o[opt] = (((vim.o[opt] == on) and off) or on)

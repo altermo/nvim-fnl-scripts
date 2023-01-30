@@ -1,5 +1,7 @@
 (local vf vim.fn)
-(local nno (. (require "utils.keymap") :nno))
+(fn nno [lhs rhs opt]
+ (vim.keymap.set "n" lhs rhs (or opt {:silent true :noremap true}))
+ )
 (fn toggle [opt on off]
   (if
     off

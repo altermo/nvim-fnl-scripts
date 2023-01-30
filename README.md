@@ -7,14 +7,14 @@ Some of my fennel based scripts for neovim.
 ## auto-save.fnl
 Auto-saves after every `InsertLeave` and `TextChanged`
 ## bookend.fnl
-Temporary bookmarks
-Keymap after running `M.goto_file`
-| key       | action                                                |
-|-----------|-------------------------------------------------------|
-| \<escape> | don't do anything                                     |
-| \<space>  | sets current file bookmark to next pressed character  |
-| \<bs>     | removes the next pressed character from the bookmarks |
-| other     | goto that bookmark                                    |
+Auto adds beginning of file name as bookmarks.
+If there are more than one file with the same bookmark then a select UI will allow you to choose one of theme, unless that bookmark is locked to a specific file.
+| key      | action                    |
+|----------|---------------------------|
+| \<CR>    | List current files        |
+| \<Tab>   | Lock a file to a bookmark |
+| \<S-tab> | Unlock a bookmark         |
+| other    | Open that bookmark        |
 ## builder.fnl
 A singe key to run/build a file.
 | key | action                         |
