@@ -6,9 +6,9 @@
 (fn M.lock_file [key]
   (let [dict (. M.visited_files key)]
     (if (> (length dict) 1)
-     (vim.ui.select dict {} #(tset dict :lock $1))
-     (tset dict :lock (. dict 1))
-     )))
+        (vim.ui.select dict {} #(tset dict :lock $1))
+        (tset dict :lock (. dict 1))
+        )))
 (fn M.unlock_file [key]
   (tset (. M.visited_files key) :lock nil)
   )
@@ -32,18 +32,19 @@
             key (: filename :sub 1 1)
             dict (. M.visited_files key)
             ]
-        (if (not dict)
-            (tset M.visited_files (: filename :sub 1 1) [filepath])
-            (if (and (not (vim.tbl_contains dict filepath) ) (= (vim.fn.isdirectory filepath) 0))
-                (table.insert (. M.visited_files key) filepath)
-                ))))))
+        (if (= (vim.fn.isdirectory filepath) 0)
+            (if (not dict)
+                (tset M.visited_files (: filename :sub 1 1) [filepath])
+                (if (not (vim.tbl_contains dict filepath))
+                     (table.insert (. M.visited_files key) filepath)
+                     )))))))
 (fn M.run []
- (match (vim.fn.getcharstr)
-  "\t" (M.lock_file (vim.fn.getcharstr))
-  "\x80kB" (M.unlock_file (vim.fn.getcharstr))
-  "\r" (vim.notify (vim.inspect M.visited_files))
-  char (M.goto_file char)
-  ))
+  (match (vim.fn.getcharstr)
+    "\t" (M.lock_file (vim.fn.getcharstr))
+    "\x80kB" (M.unlock_file (vim.fn.getcharstr))
+    "\r" (vim.notify (vim.inspect M.visited_files))
+    char (M.goto_file char)
+    ))
 (fn M.setup []
   (vim.api.nvim_create_autocmd "FileType" {:pattern "*" :callback M.add_file})
   )

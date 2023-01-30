@@ -48,30 +48,34 @@ M.add_file = function()
   if ((filename ~= "") and (vim.fn.match(filepath, "^[A-Za-z0-9]*://") == -1)) then
     local key = filename:sub(1, 1)
     local dict = M.visited_files[key]
-    if not dict then
-      M.visited_files[filename:sub(1, 1)] = {filepath}
-      return nil
-    else
-      if (not vim.tbl_contains(dict, filepath) and (vim.fn.isdirectory(filepath) == 0)) then
-        return table.insert(M.visited_files[key], filepath)
-      else
+    if (vim.fn.isdirectory(filepath) == 0) then
+      if not dict then
+        M.visited_files[filename:sub(1, 1)] = {filepath}
         return nil
+      else
+        if not vim.tbl_contains(dict, filepath) then
+          return table.insert(M.visited_files[key], filepath)
+        else
+          return nil
+        end
       end
+    else
+      return nil
     end
   else
     return nil
   end
 end
 M.run = function()
-  local _10_ = vim.fn.getcharstr()
-  if (_10_ == "\9") then
+  local _11_ = vim.fn.getcharstr()
+  if (_11_ == "\9") then
     return M.lock_file(vim.fn.getcharstr())
-  elseif (_10_ == "\128kB") then
+  elseif (_11_ == "\128kB") then
     return M.unlock_file(vim.fn.getcharstr())
-  elseif (_10_ == "\13") then
+  elseif (_11_ == "\13") then
     return vim.notify(vim.inspect(M.visited_files))
-  elseif (nil ~= _10_) then
-    local char = _10_
+  elseif (nil ~= _11_) then
+    local char = _11_
     return M.goto_file(char)
   else
     return nil
