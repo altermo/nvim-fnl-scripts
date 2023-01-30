@@ -52,7 +52,7 @@ M.add_file = function()
       M.visited_files[filename:sub(1, 1)] = {filepath}
       return nil
     else
-      if not vim.tbl_contains(dict, filepath) then
+      if (not vim.tbl_contains(dict, filepath) and (vim.fn.isdirectory(filepath) == 0)) then
         return table.insert(M.visited_files[key], filepath)
       else
         return nil

@@ -34,7 +34,7 @@
             ]
         (if (not dict)
             (tset M.visited_files (: filename :sub 1 1) [filepath])
-            (if (not (vim.tbl_contains dict filepath))
+            (if (and (not (vim.tbl_contains dict filepath) ) (= (vim.fn.isdirectory filepath) 0))
                 (table.insert (. M.visited_files key) filepath)
                 ))))))
 (fn M.run []
