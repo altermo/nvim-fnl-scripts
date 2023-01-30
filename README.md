@@ -56,6 +56,8 @@ A small wrapper library to run fennel inside neovim.
 A small wrapper for ranger.
 ## session.fnl
 One day I will start writing this script, one day.
+## swapapos.fnl
+Swap the characters `'` and `"` on the current line.
 ## tabline.fnl
 A simple tabline implementation.
 ## textobj.fnl
