@@ -67,7 +67,7 @@
                   :s "spell" :u "cursorcolumn" :w "wrap" :d "diff"
                   :t {:opt "colorcolumn" :on "1,41,81,121,161,201,241"}
                   :v {:opt "virtualedit" :on "block,onemore"} :m {:opt "mouse" :on "a"}
-                  :f "foldenable" :e "scrollbind"
+                  :f "foldenable" :e "scrollbind" :m {:opt "conceallevel" :on 2 :off 0}
                   :p {:opt "matchpairs" :on "(:),{:},[:]" :off ""}
                   })]
   (let [opt (or v.opt v)]

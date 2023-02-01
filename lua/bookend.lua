@@ -48,7 +48,7 @@ M.add_file = function()
   if ((filename ~= "") and (vim.fn.match(filepath, "^[A-Za-z0-9]*://") == -1)) then
     local key = filename:sub(1, 1)
     local dict = M.visited_files[key]
-    if (vim.fn.isdirectory(filepath) == 0) then
+    if (vim.fn.filereadable(filepath) == 1) then
       if not dict then
         M.visited_files[filename:sub(1, 1)] = {filepath}
         return nil

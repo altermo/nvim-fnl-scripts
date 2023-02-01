@@ -32,12 +32,12 @@
             key (: filename :sub 1 1)
             dict (. M.visited_files key)
             ]
-        (if (= (vim.fn.isdirectory filepath) 0)
+        (if (= (vim.fn.filereadable filepath) 1)
             (if (not dict)
                 (tset M.visited_files (: filename :sub 1 1) [filepath])
                 (if (not (vim.tbl_contains dict filepath))
-                     (table.insert (. M.visited_files key) filepath)
-                     )))))))
+                    (table.insert (. M.visited_files key) filepath)
+                    )))))))
 (fn M.run []
   (match (vim.fn.getcharstr)
     "\t" (M.lock_file (vim.fn.getcharstr))
