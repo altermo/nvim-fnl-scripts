@@ -38,11 +38,23 @@
                 (if (not (vim.tbl_contains dict filepath))
                     (table.insert (. M.visited_files key) filepath)
                     )))))))
+(fn M.select []
+  (let [locked-files (icollect [_ v (pairs M.visited_files)] (. v :lock))]
+    (vim.ui.select (vim.tbl_flatten (icollect [_ v (pairs M.visited_files)] v))
+                   {:format_item
+                   (fn [file]
+                     (if (vim.tbl_contains locked-files file)
+                         (.. ">>" file)
+                         file
+                         ))}
+                   (fn [choice]
+                     (M.open_file choice)
+                     ))))
 (fn M.run []
   (match (vim.fn.getcharstr)
     "\t" (M.lock_file (vim.fn.getcharstr))
     "\x80kB" (M.unlock_file (vim.fn.getcharstr))
-    "\r" (vim.notify (vim.inspect M.visited_files))
+    "\r" (M.select)
     char (M.goto_file char)
     ))
 (fn M.setup []
