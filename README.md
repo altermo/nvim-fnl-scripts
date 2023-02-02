@@ -58,6 +58,8 @@ A small wrapper for ranger.
 One day I will start writing this script, one day.
 ## swapapos.fnl
 Swap the characters `'` and `"` on the current line.
+## tabbm.fnl
+Use `:TabBufMove` to move current buffer to tab, takes the same argument as `:tabnext`.
 ## tabline.fnl
 A simple tabline implementation.
 ## textobj.fnl
